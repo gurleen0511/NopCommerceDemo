@@ -58,6 +58,12 @@ Open HTML report:
 npm run report
 ```
 
+## Testing status
+
+The framework, page objects, and test coverage were implemented and validated with TypeScript checks and Playwright test discovery. Full live execution against `https://demo.nopcommerce.com` could not be completed reliably because the public demo site is protected by Cloudflare bot-detection challenges. Several legitimate Playwright approaches were attempted, including headed browser runs, storage state, a persistent browser profile, and browser-context hardening, but the site continued to block automated sessions.
+
+For dependable execution, run this suite against a nopCommerce environment you control, or use a legitimately established storage state only where that access is permitted.
+
 ## Bot protection and test target
 
 The most reliable solution is to run these tests against a nopCommerce instance that your team controls, then point the suite at it:
