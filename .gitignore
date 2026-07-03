@@ -1,0 +1,9 @@
+node_modules/
+playwright-report/
+test-results/
+cloudflare_profile/
+.auth/
+.env
+.env.*
+*.code-workspace
+.DS_Store
