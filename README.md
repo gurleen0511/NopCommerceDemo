@@ -1,4 +1,4 @@
-# nopCommerce Playwright Automation Portfolio
+# nopCommerce Demo store Playwright Automation
 
 This project converts high-value manual test cases for `https://demo.nopcommerce.com` into Playwright end-to-end automated tests.
 
