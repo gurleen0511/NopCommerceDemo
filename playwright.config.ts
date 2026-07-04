@@ -4,6 +4,8 @@ declare const process: {
   env: Record<string, string | undefined>;
 };
 
+// Optional environment overrides used while evaluating Cloudflare/bot-detection behavior.
+// They are kept documented for reproducibility, but the public demo site may still block automation.
 const storageState = process.env.PLAYWRIGHT_STORAGE_STATE || undefined;
 const baseURL =
   process.env.NOPCOMMERCE_BASE_URL || "https://demo.nopcommerce.com";

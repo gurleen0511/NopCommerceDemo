@@ -60,9 +60,24 @@ npm run report
 
 ## Testing status
 
-The framework, page objects, and test coverage were implemented and validated with TypeScript checks and Playwright test discovery. Full live execution against `https://demo.nopcommerce.com` could not be completed reliably because the public demo site is protected by Cloudflare bot-detection challenges. Several legitimate Playwright approaches were attempted, including headed browser runs, storage state, a persistent browser profile, and browser-context hardening, but the site continued to block automated sessions.
+The framework, page objects, and test coverage were implemented and validated with TypeScript checks and Playwright test discovery. Full live execution against `https://demo.nopcommerce.com` could not be completed reliably because the public demo site is protected by Cloudflare bot-detection challenges.
 
-For dependable execution, this suite should be run against a nopCommerce environment where automated testing is permitted and Cloudflare verification does not block the browser session.
+The following legitimate Playwright approaches were added or tried to make the browser session look closer to a normal user session:
+
+- Headed browser execution through `npm run test:headed`.
+- Optional real browser channel selection with `PLAYWRIGHT_BROWSER_CHANNEL`.
+- Optional saved authentication/session state with `PLAYWRIGHT_STORAGE_STATE`.
+- Optional persistent browser profile support with `PLAYWRIGHT_USER_DATA_DIR`.
+- Optional proxy configuration with `PLAYWRIGHT_PROXY_SERVER`, `PLAYWRIGHT_PROXY_USERNAME`, and `PLAYWRIGHT_PROXY_PASSWORD`.
+- A realistic desktop user agent and browser headers in `playwright.config.ts`.
+- Desktop viewport, locale, timezone, color scheme, and device settings in `playwright.config.ts`.
+- Chromium launch hardening with `--disable-blink-features=AutomationControlled`.
+- `playwright-extra` with `puppeteer-extra-plugin-stealth`.
+- Browser-context hardening for `navigator.webdriver`, `window.chrome.runtime`, and screen dimensions.
+- Human-like pauses, mouse movement, and sequential typing helpers.
+- Bot-protection detection that fails fast when Cloudflare or verification pages are returned instead of the storefront.
+
+These attempts did not reliably bypass the protection on the public demo site. That is a project limitation: the suite is best treated as a Playwright/TypeScript practice portfolio unless it is pointed at a controlled nopCommerce environment where automated testing is permitted and Cloudflare verification does not block the browser session.
 
 Remove generated reports, browser profiles, and storage state:
 
