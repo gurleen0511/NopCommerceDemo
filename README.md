@@ -12,6 +12,12 @@ This project converts high-value manual test cases for `https://demo.nopcommerce
 - HTML test reports
 - GitHub Actions CI setup
 
+## 📝 QA Documentation & Strategy
+To demonstrate industry-standard QA practices, full project planning artifacts are included in this repository. These documents showcase the analytical thinking that preceded the automation code:
+
+* 📄 **[Download Full Test Plan](./docs/Test_Plan.pdf)** – Outlines the scope, test environment configurations, risks, and automation strategy for the NopCommerce platform.
+* 📊 **[Download Test Suite Matrix](./docs/Test_Suite.pdf)** – A comprehensive traceability matrix mapping manual test case IDs (`TC-001` through `TC-XXX`), priorities, prerequisites, and automated verification steps.
+
 ## Tech stack
 
 - Playwright Test
@@ -22,15 +28,17 @@ This project converts high-value manual test cases for `https://demo.nopcommerce
 ## Project structure
 
 ```text
-pages/                         Page objects
-utils/                         Test data and helpers
-tests/auth/                    Registration, login, logout tests
-tests/search/                  Search tests
-tests/cart/                    Cart and product option tests
-tests/checkout/                Checkout validation tests
+pages/                         # Page Object Model files
+utils/                         # Test data, fixtures, and execution helpers
+tests/auth/                    # Registration, login, and logout automation
+tests/search/                  # Product search and filtering automation
+tests/cart/                    # Cart and product option selection automation
+tests/checkout/                # Checkout validation automation
+docs/                          # QA Artifacts (Test Plan, Test Suite PDFs)
+├── Test_Plan.pdf
+└── Test_Suite.pdf
 docs/manual-to-automation-mapping.md
 .github/workflows/playwright.yml
-```
 
 ## Install
 
@@ -62,28 +70,15 @@ npm run report
 
 The framework, page objects, and test coverage were implemented and validated with TypeScript checks and Playwright test discovery. Full live execution against `https://demo.nopcommerce.com` could not be completed reliably because the public demo site is protected by Cloudflare bot-detection challenges.
 
-The following legitimate Playwright approaches were added or tried to make the browser session look closer to a normal user session:
+To make the browser sessions closely mimic a real human user, the following advanced configurations were added to the framework:
 
-- Headed browser execution through `npm run test:headed`.
-- Optional real browser channel selection with `PLAYWRIGHT_BROWSER_CHANNEL`.
-- Optional saved authentication/session state with `PLAYWRIGHT_STORAGE_STATE`.
-- Optional persistent browser profile support with `PLAYWRIGHT_USER_DATA_DIR`.
-- Optional proxy configuration with `PLAYWRIGHT_PROXY_SERVER`, `PLAYWRIGHT_PROXY_USERNAME`, and `PLAYWRIGHT_PROXY_PASSWORD`.
-- A realistic desktop user agent and browser headers in `playwright.config.ts`.
-- Desktop viewport, locale, timezone, color scheme, and device settings in `playwright.config.ts`.
-- Chromium launch hardening with `--disable-blink-features=AutomationControlled`.
-- `playwright-extra` with `puppeteer-extra-plugin-stealth`.
-- Browser-context hardening for `navigator.webdriver`, `window.chrome.runtime`, and screen dimensions.
-- Human-like pauses, mouse movement, and sequential typing helpers.
-- Bot-protection detection that fails fast when Cloudflare or verification pages are returned instead of the storefront.
+Stealth Integration: playwright-extra with puppeteer-extra-plugin-stealth.
+Context Hardening: Overriding navigator.webdriver, window.chrome.runtime, and screen dimensions.
+Chromium Launch Flags: Hardening with --disable-blink-features=AutomationControlled.
+Realistic Footprints: Custom desktop user agents, device viewports, locales, and human-like typing/mouse movement helpers.
+Session Management: Support for PLAYWRIGHT_STORAGE_STATE, persistent profiles (PLAYWRIGHT_USER_DATA_DIR), and optional proxies.
 
 These attempts did not reliably bypass the protection on the public demo site. That is a project limitation: the suite is best treated as a Playwright/TypeScript practice portfolio unless it is pointed at a controlled nopCommerce environment where automated testing is permitted and Cloudflare verification does not block the browser session.
-
-Remove generated reports, browser profiles, and storage state:
-
-```bash
-npm run clean
-```
 
 ## Notes
 
