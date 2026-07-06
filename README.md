@@ -15,8 +15,8 @@ This project converts high-value manual test cases for `https://demo.nopcommerce
 ## 📝 QA Documentation & Strategy
 To demonstrate industry-standard QA practices, full project planning artifacts are included in this repository. These documents showcase the analytical thinking that preceded the automation code:
 
-* 📄 **[Download Full Test Plan](./docs/Test_Plan.pdf)** – Outlines the scope, test environment configurations, risks, and automation strategy for the NopCommerce platform.
-* 📊 **[Download Test Suite Matrix](./docs/Test_Suite.pdf)** – A comprehensive traceability matrix mapping critical e-commerce modules, test descriptions, priorities, and core verification steps.
+* 📄 **[Download Full Test Plan](./docs/TestPlan_nopCommerceDemo.pdf)** – Outlines the scope, test environment configurations, risks, and automation strategy for the NopCommerce platform.
+* 📊 **[Download Test Suite Matrix](./docs/Test%20Suite%20demo.nopCommerce%20-%20Sheet1.pdf)** – A comprehensive traceability matrix mapping critical e-commerce modules, test descriptions, priorities, and core verification steps.
   
 ## Tech stack
 
